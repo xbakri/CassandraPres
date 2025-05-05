@@ -5,7 +5,7 @@ CREATE KEYSPACE ecommerce WITH replication = {
 
 use ecommerce;
 
-// User tables
+#User tables
 CREATE TABLE users_by_id (
                              user_id UUID PRIMARY KEY,
                              email TEXT,
@@ -26,7 +26,7 @@ CREATE TABLE users_by_last_name (
                                     PRIMARY KEY (last_name, user_id)
 );
 
-// Product tables
+#Product tables
 CREATE TABLE products_by_id (
                                 product_id UUID PRIMARY KEY,
                                 name TEXT,
@@ -43,7 +43,7 @@ CREATE TABLE products_by_category (
                                       PRIMARY KEY (category, product_id)
 );
 
-// Order tables
+#Order tables
 CREATE TABLE orders_by_user_id (
                                    user_id UUID,
                                    order_id UUID,
@@ -60,7 +60,7 @@ CREATE TABLE order_items_by_order_id (
                                          PRIMARY KEY (order_id, product_id)
 );
 
-// Product reviews
+#Product reviews
 CREATE TABLE reviews_by_product (
                                     product_id UUID,
                                     review_id UUID,
@@ -71,7 +71,7 @@ CREATE TABLE reviews_by_product (
                                     PRIMARY KEY (product_id, review_id)
 ) WITH CLUSTERING ORDER BY (review_id DESC);
 
-// Shopping cart by user
+#Shopping cart by user
 CREATE TABLE cart_by_user (
                               user_id UUID,
                               product_id UUID,
@@ -80,14 +80,14 @@ CREATE TABLE cart_by_user (
                               PRIMARY KEY (user_id, product_id)
 );
 
-// Analytics
+#Analytics
 CREATE TABLE product_views (
    product_id UUID,
    view_timestamp TIMESTAMP,
    PRIMARY KEY (product_id, view_timestamp)
 ) WITH CLUSTERING ORDER BY (view_timestamp DESC);
 
-// Shipping
+#Shipping
 CREATE TABLE shipment_by_order (
        order_id UUID,
        status TEXT,
